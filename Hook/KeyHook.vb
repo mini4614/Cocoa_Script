@@ -3,17 +3,17 @@
 Public Class KeyboardHook
     Implements IDisposable
 
-    <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)> _
+    <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)>
     Private Overloads Shared Function SetWindowsHookEx(ByVal idHook As Integer, ByVal HookProc As KBDLLHookProc, ByVal hInstance As IntPtr, ByVal wParam As Integer) As Integer
     End Function
-    <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)> _
+    <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)>
     Private Overloads Shared Function CallNextHookEx(ByVal idHook As Integer, ByVal nCode As Integer, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As Integer
     End Function
-    <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)> _
+    <DllImport("User32.dll", CharSet:=CharSet.Auto, CallingConvention:=CallingConvention.StdCall)>
     Private Overloads Shared Function UnhookWindowsHookEx(ByVal idHook As Integer) As Boolean
     End Function
 
-    <StructLayout(LayoutKind.Sequential)> _
+    <StructLayout(LayoutKind.Sequential)>
     Private Structure KBDLLHOOKSTRUCT
         Public vkCode As UInt32
         Public scanCode As UInt32
@@ -22,7 +22,7 @@ Public Class KeyboardHook
         Public dwExtraInfo As UIntPtr
     End Structure
 
-    <Flags()> _
+    <Flags()>
     Private Enum KBDLLHOOKSTRUCTFlags As UInt32
         LLKHF_EXTENDED = &H1
         LLKHF_INJECTED = &H10
